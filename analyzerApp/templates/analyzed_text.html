@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/analyzed_text.css' %}">
+{% endblock css %}
+
+{% block body %}
+<div class="container-fluid mt-4">
+
+    {% for message in messages %}
+
+    {% if message.tags == "success" %}
+    <div class="alert alert-success py-2" role="alert" data-mdb-color="success">
+        <i class="fas fa-check-circle me-3"></i><span class="small">{{message}}</span>
+    </div>
+    {% elif message.tags == "warning" %}
+    <div class="alert alert-warning py-2" role="alert" data-mdb-color="warning">
+        <i class="fas fa-exclamation-triangle mx-2"></i><span class="small">{{message}}</span>
+    </div>
+    {% endif %}
+
+    {% endfor %}
+
+</div>
+<div class="copy-text-container mb-5">
+    <button class="btn btn-link text-secondary active copy-button" id="copy-button" onclick="copy()">Copy</button>
+    <div class="analyzed-text-box">
+        <pre class="analyzed-text" id="analyzed-text">{{analyzed_text}}</pre>
+    </div>
+</div>
+{% endblock body %}
+
+{% block js %}
+<script src="{% static 'js/copy.js' %}"></script>
+{% endblock js %}

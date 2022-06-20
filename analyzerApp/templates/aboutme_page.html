@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container-fluid my-5">
+    <div class="card text-center">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs d-flex justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="true" href="{% url 'aboutme_page' %}">About Me</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'myskills_page' %}">My Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'mytools_page' %}">My Tools</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'connectwithme_page' %}">Connect With Me</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body p-4">
+            <p class="card-text small p-2">Hello programmers, my name is <b>{{name}}</b> and I am from
+                <b>{{address}}</b>. I am a <b>passionate {{programming}} programmer</b>, who has good command in
+                {% for skill in skills %} <b>{{skill}}</b>, {% endfor %} and much more. I have completed
+                <b>{{graduation.degree}}</b> in stream of <b>{{graduation.stream}}</b> from {{graduation.college}}.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,7 @@
+.card-body a img {
+    width: 60px;
+    height: 60px;
+    background-color: whitesmoke;
+    border: 2px solid #b23cfd;
+    border-radius: 50%;
+}
