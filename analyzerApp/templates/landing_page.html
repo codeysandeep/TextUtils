@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/landing_page.css' %}">
+{% endblock css %}
+
+
+{% block body %}
+<div class="container-fluid mt-4">
+
+    {% for message in messages %}
+
+    {% if message.tags == "success" %}
+    <div class="alert alert-success py-2" role="alert" data-mdb-color="success">
+        <i class="fas fa-check-circle me-3"></i><span class="small">{{message}}</span>
+    </div>
+    {% elif message.tags == "warning" %}
+    <div class="alert alert-warning py-2" role="alert" data-mdb-color="warning">
+        <i class="fas fa-exclamation-triangle mx-2"></i><span class="small">{{message}}</span>
+    </div>
+    {% endif %}
+
+    {% endfor %}
+
+</div>
+<div class="container my-5">
+    <form action="/analyzer" method="post" class="landing-page-form">
+
+        {% csrf_token %}
+
+        <div class="form-control outline-dark bg-light mb-3 p-3">
+            <label class="form-label">Enter your text and select an utility to analyze your text...</label>
+            <textarea class="form-control small" name="input_text" rows="9" required></textarea>
+        </div>
+
+        {% for button in buttons %}
+        <div class="form-check form-switch my-2 ms-2">
+            <input class="form-check-input" type="checkbox" name={{button.name}} />
+            <label class="form-check-label">{{button.label}}</label>
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-secondary my-2 ms-3">
+            Analyze Text
+        </button>
+
+    </form>
+</div>
+{% endblock body %}
